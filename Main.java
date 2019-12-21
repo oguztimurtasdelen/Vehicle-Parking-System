@@ -19,6 +19,7 @@ public class Main {
         JMenuItem m1,m2, a1, a2,a3;
 
         JFrame frameLogin = new JFrame("Vehicle Parking Booking System");
+        frameLogin.getContentPane().setBackground(new Color(248, 148, 6));
         frameLogin.setSize(450,300);
         Button button1 = new Button("Subscribed");
         Button button2 = new Button("Not subscribed");
@@ -50,13 +51,16 @@ public class Main {
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setLayout(null);
         frameLogin.setVisible(true);
+        frameLogin.setBackground(new Color(44,62,80));
         m1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
 
                 JFrame frameMemberSignup = new JFrame("Sign up Membership");
-                frameMemberSignup.setSize(320,400);
+                frameMemberSignup.setSize(450,400);
+                frameMemberSignup.getContentPane().setBackground(new Color(248, 148, 6));
+                frameMemberSignup.setBackground(new Color(44,62,80));
                 JLabel lbl[] = new JLabel[6];
                 JTextField txt[] = new JTextField[6];
                 for (int i = 0; i<6;i++)
@@ -96,6 +100,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 JFrame frameDeleteMember = new JFrame("Delete Membership");
                 frameDeleteMember.setSize(320, 320);
+                frameDeleteMember.getContentPane().setBackground(new Color(248, 148, 6));
                 frameDeleteMember.setLayout(null);
                 Component label1 = new Label("Subscriber number");
                 Component label2 = new Label("License number ");
@@ -127,8 +132,9 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frameLoginAdmin = new JFrame("Admin Login");
-                frameLoginAdmin.setSize(320, 320);
+                frameLoginAdmin.setSize(450, 300);
                 frameLoginAdmin.setLayout(null);
+                frameLoginAdmin.getContentPane().setBackground(new Color(248, 148, 6));
                 Component label1 = new Label("No");
                 Component label2 = new Label("Password ");
                 Component textField1 = new TextField();
@@ -151,6 +157,7 @@ public class Main {
                     public void actionPerformed(ActionEvent e) {
                         JFrame frameAdminPanel = new JFrame("Admin Panel");
                         frameAdminPanel.setSize(1200,1200);
+                        frameAdminPanel.getContentPane().setBackground(new Color(248, 148, 6));
                         JTextField[] txt = new JTextField[5];
 
                         JButton[][] btn = new JButton[5][10];
@@ -171,10 +178,11 @@ public class Main {
                                     btn[i][k].setBounds(300, 180 + (k * 60), 150, 50);
                                 if (i==2 && k!=0 && k!=1)
                                     btn[i][k].setBounds(470, 180 + (k * 60), 150, 50);
+                                btn[i][k].setIcon(new ImageIcon("C:\\Users\\atakan\\Desktop\\Adsızdolu.jpg"));
                                 frameAdminPanel.add(btn[i][k]);
                             }
                         }
-
+                        frameAdminPanel.setBackground(new Color(44,62,80));
                         frameAdminPanel.setLayout(null);
                         frameAdminPanel.setLocationRelativeTo(null);
                         frameAdminPanel.setVisible(true);
@@ -187,6 +195,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 JFrame frameAdminSignup = new JFrame("Sign up as admin");
                 frameAdminSignup.setSize(320,400);
+                frameAdminSignup.getContentPane().setBackground(new Color(248, 148, 6));
                 JLabel lbl[] = new JLabel[5];
                 JTextField txt[] = new JTextField[5];
                 for (int i = 0; i<5;i++)
@@ -226,6 +235,7 @@ public class Main {
                 JFrame frameDeleteAdmin = new JFrame("Delete Admin Membership");
                 frameDeleteAdmin.setSize(320, 320);
                 frameDeleteAdmin.setLayout(null);
+                frameDeleteAdmin.getContentPane().setBackground(new Color(248, 148, 6));
                 Component label1 = new Label("No");
                 Component label2 = new Label("Password ");
                 Component textField1 = new TextField();
@@ -257,8 +267,9 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 JFrame frameSubs = new JFrame("Subscribe");
-                frameSubs.setSize(320, 320);
+                frameSubs.setSize(450, 300);
                 frameSubs.setLayout(null);
+                frameSubs.getContentPane().setBackground(new Color(248, 148, 6));
                 Component label1 = new Label("Subscriber number");
                 Component label2 = new Label("License number ");
                 Component textField1 = new TextField();
@@ -280,6 +291,7 @@ public class Main {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         JFrame frameGarage = new JFrame("Garage");
+                        frameGarage.getContentPane().setBackground(new Color(248, 148, 6));
                         frameGarage.setSize(1200,1200);
                         JButton buttonRnd = new JButton("Random");
                         buttonRnd.setBounds(1000,270,150,30);
@@ -289,20 +301,25 @@ public class Main {
                         {
                             for (int k = 0; k<10;k++)
                             {
+
                                 btn[i][k] =new JButton("1"+i+k);
                                 if (i==0)
-                                    btn[i][k].setBounds(0, 180+ (k * 60), 150, 50);
+                                    btn[i][k].setBounds(0, 180 + (k * 60), 150, 50);
                                 if (i==1 && k!=0 && k!=1)
                                     btn[i][k].setBounds(300, 180 + (k * 60), 150, 50);
                                 if (i==2 && k!=0 && k!=1)
                                     btn[i][k].setBounds(470, 180 + (k * 60), 150, 50);
                                 if (i==3)
                                     btn[i][k].setBounds(750, 180 + (k * 60), 150, 50);
-                                if (i==4)
-                                    btn[i][k].setBounds(150+(k*60), 20 , 50, 150);
+                                btn[i][k].setIcon(new ImageIcon("C:\\Users\\atakan\\Desktop\\dolu.jpg"));
+                                if (i==4) {
+                                    btn[i][k].setBounds(150 + (k * 60), 20, 50, 150);
+                                    btn[i][k].setIcon(new ImageIcon("C:\\Users\\atakan\\Desktop\\Adsız1.jpg"));
+                                }
                                 frameGarage.add(btn[i][k]);
                             }
                         }
+                        frameGarage.setLayout(null);
                         frameGarage.setLocationRelativeTo(null);
                         frameGarage.setVisible(true);
                         }
@@ -315,7 +332,7 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 JFrame frameNotSubs = new JFrame("Not Subscribe");
                 frameNotSubs.setSize(320,400);
-
+                frameNotSubs.getContentPane().setBackground(new Color(248, 148, 6));
                 JLabel lbl[] = new JLabel[4];
                 JTextField txt[] = new JTextField[4];
                 for (int i = 0; i<4;i++)
