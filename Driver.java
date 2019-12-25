@@ -1,4 +1,3 @@
-import java.sql.Date;
 import java.util.Scanner;
 
 public class Driver
@@ -7,7 +6,7 @@ public class Driver
 	
 	public static void main (String[] args)
 	{
-		Driver dr = new Driver();
+		
 		SubscriberInfo subInfo = new SubscriberInfo();
 		
 		System.out.println("-----VEHICLE PARKING SYSTEM-----");
@@ -26,30 +25,7 @@ public class Driver
 		switch (request) 
 		{
 		case 1:
-			System.out.print("Enter your car plate: ");
-			String carPlate = scanner.nextLine();
-			
-			System.out.print("Enter your full name: ");
-			String fullName = scanner.nextLine();
-			
-			System.out.print("Enter your phone number: ");
-			String phoneNumber = scanner.nextLine();
-			
-			System.out.print("Enter your e-mail address: ");
-			String eMail = scanner.nextLine();
-			
-			System.out.print("Enter your credit card number: ");
-			String creditCardNumber = scanner.nextLine();
-			
-			String subscriptionDate = "20.12.2019";
-			
-			
-			String subscriptionNumber = dr.passwordCreator();
-			
-			
-			
-			
-			subInfo.MakeSubscriber(carPlate, subscriptionNumber, fullName, phoneNumber, eMail, creditCardNumber, subscriptionDate);
+			subInfo.MakeSubscriber();
 			
 			break;
 		
@@ -60,6 +36,7 @@ public class Driver
 			
 		case 3:
 			System.out.println("3");
+			subInfo.UpdateInfo();
 			
 			break;
 			
@@ -79,22 +56,5 @@ public class Driver
 		
 	}
 	
-	
-	private String passwordCreator()
-	{
-		// Apply encryption to password here!
-		
-		System.out.print("Please set a subscription number: ");
-		String subscriptionNumber = scanner.nextLine();
-		System.out.print("Please confirm your subscription number: ");
-		String subscriptionNumberConfirmation = scanner.nextLine();
-		
-		if (subscriptionNumber.length() <= 6 && subscriptionNumber.equals(subscriptionNumberConfirmation) ) 
-		{
-			return subscriptionNumber;
-		}
-		else System.out.println("Please follow the conditions to set a password!"); return passwordCreator();
-		
-	}
 	
 }
