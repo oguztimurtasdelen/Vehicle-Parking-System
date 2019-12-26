@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
 
 public class Main {
     public static void main(String[] args) {
@@ -333,6 +334,7 @@ public class Main {
                 JFrame frameNotSubs = new JFrame("Not Subscribe");
                 frameNotSubs.setSize(320,400);
                 frameNotSubs.getContentPane().setBackground(new Color(248, 148, 6));
+
                 JLabel lbl[] = new JLabel[4];
                 JTextField txt[] = new JTextField[4];
                 for (int i = 0; i<4;i++)
@@ -350,9 +352,49 @@ public class Main {
                 lbl[3].setText("E-mail");
                 JButton button = new JButton("Parking");
 
-                // TARİH SAAT PİCKER EKLENECEK
+                JLabel lblNewLabel = new JLabel("Test");
+                lblNewLabel.setBounds(90,330,120,40);
+                frameNotSubs.getContentPane().add(lblNewLabel);
+
+                Thread thread = new Thread();
+
+                new Thread() {
+                    int counter = 900;
+                    public void run() {
+                        while(counter >= 0) {
+                            if (counter >60){
+                                counter--;
+                                lblNewLabel.setText("Remain  "+(counter/60)+"  minute");}
+                            else
+                                lblNewLabel.setText("Remain  "+counter--);
+                            try{
+                                Thread.sleep(1000);
+                            } catch(Exception e) {}
+                        }
+                        frameNotSubs.hide();
+                    }
+                }.start();
 
 
+
+                JLabel Flabel2 = new JLabel("Check-in time                      Check-out time");
+                JLabel Flabel = new JLabel("yyyy-mm-dd   hh:mm        yyyy-mm-dd   hh:mm");
+                JTextField firstdatee = new JTextField();
+                JTextField firsthour = new JTextField();
+                JTextField seconddatee = new JTextField();
+                JTextField secondhour = new JTextField();
+                Flabel2.setBounds(20,180,300,20);
+                firstdatee.setBounds(20,210,70,20);
+                firsthour.setBounds(95,210,40,20);
+                seconddatee.setBounds(160,210,70,20);
+                secondhour.setBounds(235,210,40,20);
+                Flabel.setBounds(20,230,300,20);
+                frameNotSubs.add(Flabel2);
+                frameNotSubs.add(Flabel);
+                frameNotSubs.add(firstdatee);
+                frameNotSubs.add(firsthour);
+                frameNotSubs.add(seconddatee);
+                frameNotSubs.add(secondhour);
 
                 button.setBounds(30,280,120,40);
                 frameNotSubs.add(button);
@@ -368,8 +410,10 @@ public class Main {
                             int NotsubOption = JOptionPane.showConfirmDialog(frameNotSubs, "is available would you like to continue","",JOptionPane.YES_NO_OPTION);
                             if(NotsubOption == 0){
                                 String card = JOptionPane.showInputDialog(frameNotSubs,"Enter card number");
-
-
+                                if(card != null) {
+                                    JOptionPane.showMessageDialog(frameNotSubs, "Your appointment successfully completed");
+                                    frameNotSubs.hide();
+                                }
                             }
 
                         }
