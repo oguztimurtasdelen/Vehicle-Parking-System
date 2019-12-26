@@ -1,21 +1,27 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Driver
 {
-	static Scanner scanner = new Scanner(System.in);
+	
 	
 	public static void main (String[] args)
 	{
+		Scanner scanner = new Scanner(System.in);
+		
 		
 		SubscriberInfo subInfo = new SubscriberInfo();
+		Administration admin = new Administration();
 		
 		System.out.println("-----VEHICLE PARKING SYSTEM-----");
 		System.out.println("");
 		System.out.println("MENU");
 		System.out.println("1. Subscribe");
 		System.out.println("2. Unsubscribe");
-		System.out.println("3. Subscription - Subscribed");
-		System.out.println("4. Subscription - Unsubscribed");
+		System.out.println("3. Subscribed");
+		System.out.println("4. Unsubscribed");
 		System.out.println("5. Administration");
 		System.out.print("Choice: ");
 		
@@ -35,18 +41,24 @@ public class Driver
 			break;
 			
 		case 3:
-			System.out.println("3");
-			subInfo.UpdateInfo();
+			
+			Subscribed subscribed = new Subscribed();
+			
+			Thread threadSubscribed = new Thread(subscribed);
+			threadSubscribed.start();
 			
 			break;
 			
 		case 4:
-			System.out.println("4");
+			Unsubscribed unsubscribed = new Unsubscribed();
+			
+			Thread threadUnsubscribed = new Thread(unsubscribed);
+			threadUnsubscribed.start();
 			
 			break;
 			
 		case 5:
-			System.out.println("5");
+			admin.Ticketing();
 			
 			break;
 			
