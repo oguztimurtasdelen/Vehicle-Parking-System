@@ -15,66 +15,84 @@ public class SubscriberInfo
 	void MakeSubscriber()
 	{
 		
+		//Subscriber capacity is equal to park capacity which is 50
+		
 		String dbDriver = "com.mysql.jdbc.Driver";
 		String dbURL = "jdbc:mysql://localhost:3306/vehicleparkingsystem";
 		
 		
-		
-		System.out.print("Enter your car plate: ");
-		String carPlate = scanner.nextLine();
-		
-		System.out.print("Enter your full name: ");
-		String fullName = scanner.nextLine();
-		
-		System.out.print("Enter your phone number: ");
-		String phoneNumber = scanner.nextLine();
-		
-		System.out.print("Enter your e-mail address: ");
-		String eMail = scanner.nextLine();
-		
-		System.out.print("Enter your credit card number: ");
-		String creditCardNumber = scanner.nextLine();
-		
-		long d = System.currentTimeMillis();
-		Date date = new Date(d);
-		Date subscriptionDate = date;
-		
-		String subscriptionNumber = passwordCreator();
-		
-		
-		
-		// --- DATABASE CONNECTION ---
 		try 
 		{
-			System.out.println("A");
 			
 			Class.forName(dbDriver).newInstance();
 			Connection DatabaseConnection = (Connection) DriverManager.getConnection(dbURL, "root", "");
 			
-			System.out.println("B");
-			
-			String dbQuery="INSERT INTO subscriberinfo (carPlate, subscriptionNumber, fullName, phoneNumber, eMail, creditCard, subscriptionDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String dbQuery="SELECT COUNT(carPlate) AS numberOfCarPlate FROM subscriberinfo";
 			PreparedStatement preparedStatement = DatabaseConnection.prepareStatement(dbQuery);
+			ResultSet resultSetTable = preparedStatement.executeQuery();
 			
-			System.out.println("C");
 			
-			preparedStatement.setString(1, carPlate);
-			preparedStatement.setString(2, subscriptionNumber);
-			preparedStatement.setString(3, fullName);
-			preparedStatement.setString(4, phoneNumber);
-			preparedStatement.setString(5, eMail);
-			preparedStatement.setString(6, creditCardNumber);
-			preparedStatement.setDate(7, subscriptionDate);
+			if (resultSetTable.getInt("numberOfCarPlate")<50) 
+			{
+				System.out.print("Enter your car plate: ");
+				String carPlate = scanner.nextLine();
+				
+				System.out.print("Enter your full name: ");
+				String fullName = scanner.nextLine();
+				
+				System.out.print("Enter your phone number: ");
+				String phoneNumber = scanner.nextLine();
+				
+				System.out.print("Enter your e-mail address: ");
+				String eMail = scanner.nextLine();
+				
+				System.out.print("Enter your credit card number: ");
+				String creditCardNumber = scanner.nextLine();
+				
+				long d = System.currentTimeMillis();
+				Date date = new Date(d);
+				Date subscriptionDate = date;
+				
+				String subscriptionNumber = passwordCreator();
+				
+				dbQuery="SELECT carPlate FROM subscriberinfo";
+				preparedStatement = DatabaseConnection.prepareStatement(dbQuery);
+				resultSetTable = preparedStatement.executeQuery();
+				while (resultSetTable.next()) 
+				{
+					if (carPlate.equals(resultSetTable.getString("carPlate")) || creditCardNumber.length()!=16 || phoneNumber.length()!=11) 
+					{
+						System.out.println("This car plate may have been already subscribed!");
+						System.out.println("Credit Card Number may be invalid!");
+						System.out.println("Phone Number may be invalid!");
+						break;
+						
+					}
+					else
+					{
+						dbQuery="INSERT INTO subscriberinfo (carPlate, subscriptionNumber, fullName, phoneNumber, eMail, creditCard, subscriptionDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+						preparedStatement = DatabaseConnection.prepareStatement(dbQuery);
+						
+						
+						preparedStatement.setString(1, carPlate);
+						preparedStatement.setString(2, subscriptionNumber);
+						preparedStatement.setString(3, fullName);
+						preparedStatement.setString(4, phoneNumber);
+						preparedStatement.setString(5, eMail);
+						preparedStatement.setString(6, creditCardNumber);
+						preparedStatement.setDate(7, subscriptionDate);
+						
+						preparedStatement.execute();
+						
+						DatabaseConnection.close();
+					}
+					
+				}
+				
+			}
+			else System.out.println("No limit for the new subscription");
 			
-			System.out.println("D");
 			
-			preparedStatement.execute();
-			
-			System.out.println("E");
-			
-			DatabaseConnection.close();
-			
-			System.out.println("F");
 		}
 		
 		catch (ClassNotFoundException error) 
@@ -146,13 +164,11 @@ public class SubscriberInfo
 			Class.forName(dbDriver).newInstance();
 			Connection DatabaseConnection = (Connection) DriverManager.getConnection(dbURL, "root", "");
 			
-			String dbQuery="DELETE FROM subscriberInfo WHERE carPlate=? AND subscriptionNumber=?";
+			String dbQuery="DELETE FROM subscriberinfo WHERE carPlate=? AND subscriptionNumber=?";
 			PreparedStatement preparedStatement = DatabaseConnection.prepareStatement(dbQuery);
 			
 			preparedStatement.setString(1, carPlate);
 			preparedStatement.setString(2, subscriptionNumber);
-
-			// get Car Plate and subscriptionNumber(Password) here means decrypted password, then set Prepared Statements!
 
 			preparedStatement.execute();
 			
@@ -204,7 +220,7 @@ public class SubscriberInfo
 			Class.forName(dbDriver).newInstance();
 			Connection DatabaseConnection = (Connection) DriverManager.getConnection(dbURL, "root", "");
 			
-			String dbQuery = "SELECT * FROM subscriberInfo WHERE carPlate=? AND subscriptionNumber=?";
+			String dbQuery = "SELECT * FROM subscriberinfo WHERE carPlate=? AND subscriptionNumber=?";
 			PreparedStatement preparedStatement = DatabaseConnection.prepareStatement(dbQuery);
 			ResultSet resultSetTable = preparedStatement.executeQuery();
 			
