@@ -1,0 +1,4 @@
+public interface AttendingParking 
+{
+	String Placement();
+}
