@@ -33,7 +33,7 @@ public class GUIAdminLogin {
                 frameAdminPanel.setSize(1200,1200);
                 frameAdminPanel.getContentPane().setBackground(new Color(248, 148, 6));
                 JTextField[] txt = new JTextField[5];
-
+                //ikili array iflerli lokasyon ataması için kullandım
                 JButton[][] btn = new JButton[5][10];
                 for (int i = 0; i<5;i++)
                 {

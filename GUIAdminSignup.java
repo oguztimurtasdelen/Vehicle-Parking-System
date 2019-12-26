@@ -10,6 +10,7 @@ public class GUIAdminSignup {
         frameAdminSignup.getContentPane().setBackground(new Color(248, 148, 6));
         JLabel lbl[] = new JLabel[5];
         JTextField txt[] = new JTextField[5];
+        //tek tek yazmamak için for döngüsüyle array oluşturdum
         for (int i = 0; i<5;i++)
         {
             lbl[i] = new JLabel();

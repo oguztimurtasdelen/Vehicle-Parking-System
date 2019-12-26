@@ -29,7 +29,7 @@ public class GUINotSubscribed {
         JLabel lblNewLabel = new JLabel("Test");
         lblNewLabel.setBounds(90,330,120,40);
         frameNotSubs.getContentPane().add(lblNewLabel);
-
+        //15dakika geri sayım
         Thread thread = new Thread();
 
         new Thread() {
@@ -78,8 +78,12 @@ public class GUINotSubscribed {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //değer girilmeyince devam etmemesi için
+
                 if(txt[0].getText().equals("")|| txt[1].getText().equals("") || txt[2].getText().equals("") || txt[3].getText().equals(""))
                     JOptionPane.showMessageDialog(frameNotSubs,"Fill the void places");
+
                 else {
                     int NotsubOption = JOptionPane.showConfirmDialog(frameNotSubs, "is available would you like to continue","",JOptionPane.YES_NO_OPTION);
                     if(NotsubOption == 0){
