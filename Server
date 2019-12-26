@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server 
+{
+	public static void main(String[] args)
+	{
+		
+		try 
+		{
+			ServerSocket serverSocket = new ServerSocket(3334); //Server starts
+			System.out.println("Server Starts");
+			Socket socket = serverSocket.accept(); //Clients accepted
+			System.out.println("Clients Accepted");
+			socket.close();
+			System.out.println("Socket is Closed");
+		}
+		catch (IOException error)
+		{
+			error.getStackTrace();
+		}
+		catch (Exception error) 
+		{
+			error.getStackTrace();
+		}
+		
+	}
+	
+}
